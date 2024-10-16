@@ -26,6 +26,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     board = await db.board.create({
       data: { title },
     });
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     return { error: "Failed to create." };
   }
