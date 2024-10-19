@@ -1,13 +1,12 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 
 import { db } from "@/lib/db";
 import { createSafeAction } from "@/lib/create-safe-action";
 
-import { DeleteBoard } from "./schema";
+import { UpdateList } from "./schema";
 
 import { InputType, ReturnType } from "./types";
 
@@ -20,23 +19,23 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     };
   }
 
-  const { id } = data;
+  const { title, id, boardId } = data;
 
-  let board;
+  let list;
 
   try {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    board = await db.board.delete({
-      where: { id, orgId },
+    list = await db.list.update({
+      where: { id, boardId, board: { orgId } },
+      data: { title },
     });
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
-    return { error: "Failed to delete." };
+    return { error: "Failed to update." };
   }
 
-  revalidatePath(`/organization/${orgId}`);
+  revalidatePath(`/board/${boardId}`);
 
-  redirect(`/organization/${orgId}`);
+  return { data: list };
 };
 
-export const deleteBoard = createSafeAction(DeleteBoard, handler);
+export const updateList = createSafeAction(UpdateList, handler);
