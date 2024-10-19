@@ -13,6 +13,7 @@ import { List } from "@prisma/client";
 import { toast } from "sonner";
 
 import { FormInput } from "@/components/form/form-input";
+import { ListOptions } from "./list-options";
 
 interface ListHeaderProps {
   data: List;
@@ -98,6 +99,7 @@ export const ListHeader = ({ data }: ListHeaderProps) => {
           {title}
         </div>
       )}
+      <ListOptions onAddCard={() => {}} data={data} />
     </div>
   );
 };
