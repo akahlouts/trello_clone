@@ -4,6 +4,12 @@ import { useEffect, useState } from "react";
 
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 
+import { useAction } from "@/hooks/use-action";
+
+import { updateListOrder } from "@/actions/update-list-order";
+
+import { toast } from "sonner";
+
 import { ListForm } from "./list-form";
 import { ListItem } from "./list-item";
 
@@ -26,10 +32,20 @@ function reorder<T>(list: T[], startIndex: number, endIndex: number) {
 export const ListContainer = ({ data, boardId }: ListContainerProps) => {
   const [orderedData, setOrderedData] = useState(data);
 
+  const { execute: executeUpdateListOrder } = useAction(updateListOrder, {
+    onSuccess: () => {
+      toast.success("List reordered");
+    },
+    onError: (error) => {
+      toast.error(error);
+    },
+  });
+
   useEffect(() => {
     setOrderedData(data);
   }, [data]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onDragEnd = (result: any) => {
     const { destination, source, type } = result;
 
@@ -52,11 +68,12 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
       );
 
       setOrderedData(items);
-      // TODO: Trigger Server Action
+      executeUpdateListOrder({ items, boardId });
     }
 
     // User moves a card
     if (type === "card") {
+      // eslint-disable-next-line prefer-const
       let newOrderedData = [...orderedData];
 
       // Source and destination list
