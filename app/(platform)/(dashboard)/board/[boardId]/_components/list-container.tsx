@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import { DragDropContext, Droppable } from "@hello-pangea/dnd";
+
 import { ListForm } from "./list-form";
 import { ListItem } from "./list-item";
 
@@ -20,12 +22,23 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
   }, [data]);
 
   return (
-    <ol className="flex gap-x-3 h-full">
-      {orderedData.map((list, index) => {
-        return <ListItem key={list.id} index={index} data={list} />;
-      })}
-      <ListForm />
-      <div className="flex shrink-0 w-1" />
-    </ol>
+    <DragDropContext onDragEnd={() => {}}>
+      <Droppable droppableId="lists" type="list" direction="horizontal">
+        {(provided) => (
+          <ol
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+            className="flex gap-x-3 h-full"
+          >
+            {orderedData.map((list, index) => {
+              return <ListItem key={list.id} index={index} data={list} />;
+            })}
+            <ListForm />
+            {provided.placeholder}
+            <div className="flex shrink-0 w-1" />
+          </ol>
+        )}
+      </Droppable>
+    </DragDropContext>
   );
 };
