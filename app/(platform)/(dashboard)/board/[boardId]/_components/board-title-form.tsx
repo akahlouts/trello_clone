@@ -53,6 +53,10 @@ export const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
   const onSubmit = (formData: FormData) => {
     const title = formData.get("title") as string;
 
+    if (title === data.title) {
+      return;
+    }
+
     execute({ title, id: data.id });
   };
 
