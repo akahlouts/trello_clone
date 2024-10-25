@@ -17,11 +17,13 @@ export async function GET(
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const auditLog = await db.auditLog.findMany({
+    const auditLogs = await db.auditLog.findMany({
       where: { orgId, entityId: params.cardId, entityType: ENTITY_TYPE.CARD },
       orderBy: { createdAt: "desc" },
       take: 3,
     });
+
+    return NextResponse.json(auditLogs);
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
