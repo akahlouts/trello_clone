@@ -11,11 +11,12 @@ Taskify is a powerful and intuitive project management platform inspired by Trel
 - **Tailwind CSS**
 - **PostgreSQL**
 - **Unsplash API**
-- **shadcn UI**
+- **ShadCN UI**
+- **Clerk**
 
 ## 🔋 Key Features
 
-👉 **Authentication**: Secure user authentication and profile management, allowing users to easily log in and access their personalized workspaces.
+👉 **Authentication**: Secure user authentication and profile management powered by **Clerk**, allowing users to log in and access their personalized workspaces.
 
 👉 **Organizations & Workspaces**: Create and manage multiple organizations, each with its own set of workspaces and boards to keep tasks organized for different teams or projects.
 
