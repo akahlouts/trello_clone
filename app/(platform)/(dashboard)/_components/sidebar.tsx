@@ -11,7 +11,6 @@ import { Plus } from "lucide-react";
 import { NavItem, Organization } from "./nav-item";
 
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Accordion } from "@/components/ui/accordion";
 
@@ -20,6 +19,7 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ storageKey = "t-sidebar-state" }: SidebarProps) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [expanded, setExpanded] = useLocalStorage<Record<string, any>>(
     storageKey,
     {}
