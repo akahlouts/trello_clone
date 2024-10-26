@@ -8,7 +8,9 @@ import { ACTION, ENTITY_TYPE } from "@prisma/client";
 
 import { db } from "@/lib/db";
 import { createSafeAction } from "@/lib/create-safe-action";
+import { decreaseAvailableCount } from "@/lib/org-limit";
 import { createAuditLog } from "@/lib/create-audit-log";
+import { checkSubscription } from "@/lib/subscription";
 
 import { DeleteBoard } from "./schema";
 
@@ -23,6 +25,8 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     };
   }
 
+  const isPro = await checkSubscription();
+
   const { id } = data;
 
   let board;
@@ -31,6 +35,10 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     board = await db.board.delete({
       where: { id, orgId },
     });
+
+    if (!isPro) {
+      await decreaseAvailableCount();
+    }
 
     await createAuditLog({
       entityTitle: board.title,
