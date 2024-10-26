@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🤖 Taskify
 
-## Getting Started
+Taskify is a powerful and intuitive project management platform inspired by Trello, designed to streamline teamwork and organize tasks within workspaces. Taskify offers a range of features to support collaboration, track progress, and manage projects efficiently. From board creation to custom organization settings, Taskify provides everything you need to keep your team aligned and productive.
 
-First, run the development server:
+## ⚙️ Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Next.js**
+- **Server Actions**
+- **Prisma**
+- **Stripe**
+- **Tailwind CSS**
+- **PostgreSQL**
+- **Unsplash API**
+- **shadcn UI**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔋 Key Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+👉 **Authentication**: Secure user authentication and profile management, allowing users to easily log in and access their personalized workspaces.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+👉 **Organizations & Workspaces**: Create and manage multiple organizations, each with its own set of workspaces and boards to keep tasks organized for different teams or projects.
 
-## Learn More
+👉 **Board Creation**: Set up customizable boards for each workspace to organize tasks and collaborate effectively with team members.
 
-To learn more about Next.js, take a look at the following resources:
+👉 **Random Cover Images**: Taskify integrates with the Unsplash API to provide beautiful random cover images for your boards, adding a touch of personalization and inspiration.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+👉 **Activity Log**: Keep track of all actions and updates across the organization with a comprehensive activity log, ensuring visibility and accountability for all members.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+👉 **Board Rename & Delete**: Easily rename or delete boards within a workspace, keeping the structure clear and relevant.
 
-## Deploy on Vercel
+👉 **List Management**:
+- **Create Lists**: Break down tasks into lists within a board, organizing them by status, priority, or custom categories.
+- **Rename & Delete Lists**: Modify or remove lists as needed to maintain clarity.
+- **Drag & Drop Reorder**: Rearrange lists and adjust the structure of your board on the fly.
+- **Copy Lists**: Duplicate lists to maintain similar task structures across different boards.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+👉 **Card Management**:
+- **Create Cards**: Add individual tasks (cards) within lists for better breakdown and tracking of work items.
+- **Card Details**: Assign descriptions, rename, and delete cards as necessary for clarity.
+- **Drag & Drop Reorder**: Move cards around within lists or between lists for a flexible workflow.
+- **Card Copy**: Duplicate cards to replicate similar tasks or checklists.
+- **Card Activity Log**: Review an activity log for each card to track updates and changes.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+👉 **Board Limit per Organization**: Set board limits per organization, with the option to upgrade for unlimited boards through a subscription.
+
+👉 **Stripe Subscription for Unlimited Boards**: Each organization can subscribe through Stripe to unlock the ability to create unlimited boards, enabling Taskify to scale with the team’s needs.
+
+👉 **Landing Page**: An engaging, responsive landing page to welcome users and introduce Taskify’s benefits.
+
+👉 **Responsive Design**: Taskify is optimized for desktops, tablets, and mobile devices, ensuring a seamless user experience across various screen sizes.
+
+## 📂 Database & ORM
+
+- **PostgreSQL**: Robust database management using PostgreSQL for efficient data storage and handling.
+- **Prisma ORM**: Prisma facilitates smooth and efficient data interactions between Taskify’s backend and PostgreSQL.
