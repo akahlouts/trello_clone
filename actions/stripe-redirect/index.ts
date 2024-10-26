@@ -12,6 +12,7 @@ import { StripeRedirect } from "./schema";
 
 import { InputType, ReturnType } from "./types";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const handler = async (data: InputType): Promise<ReturnType> => {
   const { userId, orgId } = auth();
   const user = await currentUser();
